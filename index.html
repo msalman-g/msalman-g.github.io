@@ -1,88 +1,3 @@
-
-Claude finished the response
-
-Edited 4 files, ran 2 commands
-Edited 4 files, ran 2 commands
-Cleaned up — no more frontend-first framing in the hero, about section, or role rotator. It now reads as a straightforward full-stack engineer, with the project-level "frontend" mentions left alone where they're just factual descriptions of specific past work (e.g. sole frontend dev on Investify).
-
-
-Read a file
-Read a file
-Done — the hero, about section, and role rotator no longer lead with a frontend identity, just a straightforward full-stack framing.
-
-
-Index
-Code · HTML 
-remove educartion from awards section. also where can i deploy it
-
-
-Edited a file, ran a command
-Edited a file, ran a command
-Removed the education card — awards now just has the two entries (Extra Mile Award + Medium publication).
-
-On deployment: since it's a single self-contained index.html with no build step, the easiest options are:
-
-Netlify Drop — go to app.netlify.com/drop and drag the file in. Live in seconds, free, gives you a URL immediately (custom domain optional after).
-
-GitHub Pages — push the file to a GitHub repo, enable Pages in repo settings (Settings → Pages → deploy from branch). Free, and pairs well if you also want the repo public as a portfolio signal.
-
-Vercel — similar to Netlify; vercel deploy via their CLI or drag-and-drop through their dashboard also works for static files.
-
-Cloudflare Pages — same idea, free tier, fast global CDN.
-
-For a personal portfolio with no backend, Netlify Drop is the fastest (no account needed to get a preview URL, though you'll want an account to keep it permanent), and GitHub Pages is the most "engineer-typical" choice since it doubles as a public repo link. Want me to prep the file for any of these (e.g., add a CNAME for GitHub Pages, or split assets)?
-
-no need for emdhases. add smth like i cant dance, sing or love to play video games, nor i am an athelete. all i know and have been doing for 10+ yrs now is coding and stufff.
-also can we include github commit map here? those green boxes?
-
-
-Edited a file
-Edited a file
-Added, as a plain paragraph with no bold/emphasis, matching the rest of the About copy.
-
-For the GitHub contribution graph — what's your actual GitHub username? Once I have it, I can embed the green contribution grid (via a public SVG service like ghchart.rshah.org/<username>) and fix that placeholder GitHub link in the Contact section at the same time. Note this only works if your GitHub contributions are set to public.
-
-msalman-g
-
-
-Searched the web, edited 2 files, ran a command
-Searched the web, edited 2 files, ran a command
-Now fixing the placeholder GitHub button in Contact:
-
-
-Edited a file, ran a command, read a file
-Edited a file, ran a command, read a file
-Added a GitHub activity card in the About section with your contribution graph (tinted in the site's indigo, via ghchart.rshah.org), linking to github.com/msalman-g, and fixed the placeholder GitHub button in Contact to point there too. Note: this only shows real green boxes if your contributions on that account are public.
-
-
-Index
-Code · HTML 
-now how can i use github pages for free
-
-
-Searched the web
-Searched the web
-Since it's just one index.html with no build step, GitHub Pages is a good fit. Quick way to do it:
-
-Create a new public repo named exactly msalman-g.github.io (using your username as the repo name gives you a clean root URL — https://msalman-g.github.io — instead of a subpath). If you'd rather keep it under a project name like portfolio, that works too, it'll just live at https://msalman-g.github.io/portfolio.
-Upload index.html to the root of that repo — drag-and-drop through GitHub's web UI works fine, or git add/commit/push if you're doing it from a terminal.
-Go to the repo's Settings → Pages, and under "Build and deployment" choose "Deploy from a branch," pick main and /root.
-Save, wait a minute or two, and it'll be live at the URL from step 1.
-Every time you push a change to that file, the live site updates automatically within a minute or so. Since the repo has to be public for free Pages hosting, anyone could technically view the source — nothing sensitive is in this file, so that's fine.
-
-Want me to package the file with a README.md and repo structure ready to push, or a CNAME file if you plan to point a custom domain at it later?
-
-
-
-You’ve used 75% of your usage
-
-
-
-
-Claude is AI and can make mistakes. Please double-check responses.
-
-
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,7 +44,7 @@ Index · HTML
     background-clip:text;
     color:transparent;
   }
- 
+
   /* NAV */
   header{
     position:sticky;top:0;z-index:50;
@@ -150,7 +65,7 @@ Index · HTML
     box-shadow:var(--shadow);
   }
   .menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink);}
- 
+
   /* HERO */
   .hero{position:relative;padding:96px 0 80px;overflow:hidden;}
   .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.45;z-index:0;}
@@ -190,7 +105,7 @@ Index · HTML
   .stat{text-align:center;}
   .stat b{display:block;font-size:1.8rem;font-family:'Space Grotesk',sans-serif;background:linear-gradient(135deg,var(--purple),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent;}
   .stat span{font-size:0.85rem;color:var(--muted);font-weight:500;}
- 
+
   /* SECTION shared */
   section{padding:88px 0;}
   .section-tag{
@@ -200,11 +115,11 @@ Index · HTML
   .section-head{max-width:640px;margin-bottom:52px;}
   .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 14px;}
   .section-head p{color:var(--muted);font-size:1.02rem;line-height:1.7;margin:0;}
- 
+
   /* Initial hidden state — animated in by Motion (motion.dev) via inView + stagger, see script at bottom.
      No CSS transition here on purpose: Motion drives opacity/transform directly through the Web Animations API. */
   .reveal{opacity:0;}
- 
+
   /* ABOUT */
   .about-grid{display:grid;grid-template-columns:220px 1fr;gap:48px;align-items:start;}
   .avatar{
@@ -223,7 +138,7 @@ Index · HTML
   .gh-activity-head a{color:var(--purple);font-weight:600;}
   .gh-chart-wrap{overflow-x:auto;}
   .gh-chart-wrap img{display:block;min-width:640px;width:100%;}
- 
+
   /* EXPERIENCE */
   .timeline{position:relative;padding-left:36px;}
   .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;background:linear-gradient(180deg,var(--purple),var(--pink),var(--orange));border-radius:3px;}
@@ -241,7 +156,7 @@ Index · HTML
   .tl-card li b{color:var(--ink);}
   .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
   .tag{font-size:0.78rem;font-weight:600;padding:5px 12px;border-radius:999px;background:#F4F1FE;color:var(--purple);}
- 
+
   /* PROJECTS */
   .project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;}
   .project-card{
@@ -260,7 +175,7 @@ Index · HTML
   .project-card h3{margin:0 0 10px;font-size:1.1rem;}
   .project-card p{color:var(--muted);font-size:0.92rem;line-height:1.65;margin:0 0 14px;}
   .project-meta{font-size:0.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
- 
+
   /* SKILLS */
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;}
   .skill-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);}
@@ -268,7 +183,7 @@ Index · HTML
   .skill-card h3 i{width:10px;height:10px;border-radius:3px;display:inline-block;}
   .pill-wrap{display:flex;flex-wrap:wrap;gap:8px;}
   .pill{font-size:0.82rem;font-weight:600;padding:6px 12px;border-radius:999px;background:#F6F5FA;color:var(--ink);border:1px solid var(--line);}
- 
+
   /* AWARDS */
   .awards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;}
   .award-card{
@@ -278,7 +193,7 @@ Index · HTML
   .award-icon{flex:none;width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--yellow),var(--orange));display:flex;align-items:center;justify-content:center;color:#fff;}
   .award-card h3{margin:0 0 6px;font-size:1rem;}
   .award-card p{margin:0;color:var(--muted);font-size:0.9rem;line-height:1.6;}
- 
+
   /* CONTACT */
   .contact-banner{
     background:linear-gradient(120deg,var(--purple),var(--pink) 55%,var(--orange));
@@ -290,9 +205,9 @@ Index · HTML
   .btn-white{background:#fff;color:var(--purple);}
   .btn-outline-white{border:1.5px solid rgba(255,255,255,0.7);color:#fff;background:transparent;}
   .btn-outline-white:hover{background:rgba(255,255,255,0.15);}
- 
+
   footer{padding:36px 0;text-align:center;color:var(--muted);font-size:0.85rem;}
- 
+
   @media (max-width:760px){
     .nav-links{display:none;}
     .menu-btn{display:block;}
@@ -303,7 +218,7 @@ Index · HTML
 </style>
 </head>
 <body>
- 
+
 <header>
   <nav>
     <a href="#top" class="brand"><span class="brand-dot"></span>Muhammad Salman</a>
@@ -317,7 +232,7 @@ Index · HTML
     <a href="#contact" class="nav-cta">Let's talk</a>
   </nav>
 </header>
- 
+
 <main id="top">
   <section class="hero">
     <div class="blob blob1"></div>
@@ -344,7 +259,7 @@ Index · HTML
       </div>
     </div>
   </section>
- 
+
   <section id="about">
     <div class="container">
       <div class="about-grid">
@@ -375,7 +290,7 @@ Index · HTML
       </div>
     </div>
   </section>
- 
+
   <section id="experience" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
     <div class="container">
       <div class="section-head reveal">
@@ -383,7 +298,7 @@ Index · HTML
         <h2>Where I've made an impact</h2>
         <p>Full-time engineering at Motive, plus a track record of independent full-stack projects delivered in parallel.</p>
       </div>
- 
+
       <div class="timeline">
         <div class="tl-item reveal">
           <div class="tl-dot"></div>
@@ -408,7 +323,7 @@ Index · HTML
             </div>
           </div>
         </div>
- 
+
         <div class="tl-item reveal">
           <div class="tl-dot"></div>
           <div class="tl-card">
@@ -425,7 +340,7 @@ Index · HTML
             <div class="tag-row"><span class="tag">React</span><span class="tag">Supabase</span><span class="tag">OpenAI API</span></div>
           </div>
         </div>
- 
+
         <div class="tl-item reveal">
           <div class="tl-dot"></div>
           <div class="tl-card">
@@ -440,7 +355,7 @@ Index · HTML
             <div class="tag-row"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Supabase</span></div>
           </div>
         </div>
- 
+
         <div class="tl-item reveal">
           <div class="tl-dot"></div>
           <div class="tl-card">
@@ -456,7 +371,7 @@ Index · HTML
             <div class="tag-row"><span class="tag">React</span><span class="tag">Go</span><span class="tag">PostgreSQL</span></div>
           </div>
         </div>
- 
+
         <div class="tl-item reveal">
           <div class="tl-dot"></div>
           <div class="tl-card">
@@ -476,7 +391,7 @@ Index · HTML
       </div>
     </div>
   </section>
- 
+
   <section id="projects">
     <div class="container">
       <div class="section-head reveal">
@@ -536,7 +451,7 @@ Index · HTML
       </div>
     </div>
   </section>
- 
+
   <section id="skills" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
     <div class="container">
       <div class="section-head reveal">
@@ -594,7 +509,7 @@ Index · HTML
       </div>
     </div>
   </section>
- 
+
   <section id="awards">
     <div class="container">
       <div class="section-head reveal">
@@ -623,7 +538,7 @@ Index · HTML
       </div>
     </div>
   </section>
- 
+
   <section id="contact">
     <div class="container">
       <div class="contact-banner reveal">
@@ -638,18 +553,18 @@ Index · HTML
     </div>
   </section>
 </main>
- 
+
 <footer>
   <div class="container">© <span id="year"></span> Muhammad Salman. Built with curiosity and a little too much coffee.</div>
 </footer>
- 
+
 <noscript><style>.reveal{opacity:1 !important;}</style></noscript>
- 
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
- 
+
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- 
+
   // Role rotator (skipped under reduced-motion to avoid unnecessary flicker)
   const roleEl = document.getElementById('roleWord');
   if (!prefersReduced) {
@@ -662,7 +577,7 @@ Index · HTML
       setTimeout(() => { roleEl.textContent = roles[ri]; roleEl.style.opacity = 1; }, 250);
     }, 2600);
   }
- 
+
   // Safety net: if the Motion CDN import below fails to load (blocked network, offline, etc.)
   // force every .reveal element visible after a short delay so content is never stuck hidden.
   setTimeout(() => {
@@ -670,7 +585,7 @@ Index · HTML
       if (getComputedStyle(el).opacity === '0') el.style.opacity = 1;
     });
   }, 2000);
- 
+
   // 3D tilt-on-hover for cards — perspective rotateX/rotateY driven by cursor position.
   // Desktop-hover only (skips touch devices) and skipped entirely under reduced-motion.
   if (!prefersReduced && window.matchMedia('(hover: hover)').matches) {
@@ -688,7 +603,7 @@ Index · HTML
     });
   }
 </script>
- 
+
 <!-- Three.js hero scene: decorative floating wireframe shapes with mouse parallax, purely aesthetic (aria-hidden canvas).
      Loaded from cdnjs (r128, a well-tested version with no known CapsuleGeometry/API pitfalls). If this fails to load
      or the browser lacks WebGL, initHero3D() below no-ops and the gradient blobs alone still carry the hero visual. -->
@@ -698,29 +613,29 @@ Index · HTML
   const canvas = document.getElementById('hero3d');
   const hero = canvas && canvas.closest('.hero');
   if (!canvas || !hero || typeof THREE === 'undefined') return;
- 
+
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- 
+
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
   } catch (e) {
     return; // no WebGL support — the gradient blobs still render behind the text
   }
- 
+
   const scene = new THREE.Scene();
   const getSize = () => ({ w: hero.clientWidth, h: hero.clientHeight || 600 });
   let { w, h } = getSize();
- 
+
   const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
   camera.position.z = 9;
- 
+
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.setSize(w, h);
- 
+
   const group = new THREE.Group();
   scene.add(group);
- 
+
   // Palette matches the site's design tokens (--purple/--pink/--orange/--teal)
   const palette = [0x4F46E5, 0xE11D48, 0xEA580C, 0x06B6D4];
   const geometries = [
@@ -735,24 +650,24 @@ Index · HTML
     group.add(mesh);
     return mesh;
   });
- 
+
   let mouseX = 0, mouseY = 0;
   hero.addEventListener('mousemove', (e) => {
     const r = hero.getBoundingClientRect();
     mouseX = (e.clientX - r.left) / r.width - 0.5;
     mouseY = (e.clientY - r.top) / r.height - 0.5;
   });
- 
+
   window.addEventListener('resize', () => {
     const s = getSize();
     camera.aspect = s.w / s.h;
     camera.updateProjectionMatrix();
     renderer.setSize(s.w, s.h);
   });
- 
+
   let tabVisible = true;
   document.addEventListener('visibilitychange', () => { tabVisible = !document.hidden; });
- 
+
   if (prefersReduced) {
     renderer.render(scene, camera); // single static frame — no continuous animation
   } else {
@@ -770,23 +685,23 @@ Index · HTML
   }
 })();
 </script>
- 
+
 <script type="module">
   // Motion (formerly Framer Motion) — scroll-triggered, staggered section reveals.
   // https://motion.dev/docs/inview  https://motion.dev/docs/stagger
   import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
- 
+
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- 
+
   inView('section', (sectionEl) => {
     const items = Array.from(sectionEl.querySelectorAll('.reveal'));
     if (!items.length) return;
- 
+
     if (prefersReduced) {
       items.forEach(el => { el.style.opacity = 1; });
       return;
     }
- 
+
     animate(
       items,
       { opacity: [0, 1], y: [24, 0] },
@@ -794,7 +709,6 @@ Index · HTML
     );
   }, { amount: 0.2 });
 </script>
- 
+
 </body>
 </html>
- 
