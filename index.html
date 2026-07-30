@@ -245,7 +245,7 @@
         Available for interesting problems
       </div>
       <h1 class="reveal">Building fast, friendly &amp;<br><span class="gradient-text">a little bit magical</span> software.</h1>
-      <div class="role-rotator reveal">I'm a <span class="role-word" id="roleWord">Full-stack Engineer</span></div>
+      <div class="role-rotator reveal">I'm <span id="roleArticle">a</span> <span class="role-word" id="roleWord">Full-stack Engineer</span></div>
       <p class="lead reveal">6+ years shipping production web apps across fintech, healthtech and B2B SaaS — from React and Ruby on Rails to production LLM systems, end to end. Currently L4 Software Engineer at Motive.</p>
       <div class="hero-ctas reveal">
         <a href="#projects" class="btn btn-primary">See my work →</a>
@@ -567,6 +567,7 @@
 
   // Role rotator (skipped under reduced-motion to avoid unnecessary flicker)
   const roleEl = document.getElementById('roleWord');
+  const articleEl = document.getElementById('roleArticle');
   if (!prefersReduced) {
     const roles = ["Full-stack Engineer","Backend Engineer","AI Engineer","Problem Solver"];
     let ri = 0;
@@ -574,7 +575,11 @@
     setInterval(() => {
       ri = (ri + 1) % roles.length;
       roleEl.style.opacity = 0;
-      setTimeout(() => { roleEl.textContent = roles[ri]; roleEl.style.opacity = 1; }, 250);
+      setTimeout(() => {
+        roleEl.textContent = roles[ri];
+        articleEl.textContent = /^[aeiou]/i.test(roles[ri]) ? 'an' : 'a';
+        roleEl.style.opacity = 1;
+      }, 250);
     }, 2600);
   }
 
