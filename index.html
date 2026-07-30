@@ -5,8 +5,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Muhammad Salman — Full-stack & AI Software Engineer</title>
 <meta name="description" content="Portfolio of Muhammad Salman, Full-stack & AI Software Engineer specializing in React, TypeScript, Ruby on Rails, and LLM engineering.">
+<!-- SEO: canonical + Open Graph / Twitter Card. Replace the placeholder URL below with your real hosted domain. -->
+<link rel="canonical" href="https://msalman-g.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%234F46E5'/><text x='32' y='43' font-family='Arial' font-size='26' font-weight='700' fill='white' text-anchor='middle'>MS</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Muhammad Salman — Full-stack & AI Software Engineer">
+<meta property="og:description" content="Portfolio of Muhammad Salman, Full-stack & AI Software Engineer specializing in React, TypeScript, Ruby on Rails, and LLM engineering.">
+<meta property="og:url" content="https://msalman-g.github.io/">
+<!-- Add a screenshot/preview image, then uncomment: <meta property="og:image" content="https://msalman-g.github.io/preview.png"> -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Muhammad Salman — Full-stack & AI Software Engineer">
+<meta name="twitter:description" content="Portfolio of Muhammad Salman, Full-stack & AI Software Engineer specializing in React, TypeScript, Ruby on Rails, and LLM engineering.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Muhammad Salman",
+  "jobTitle": "Full-stack & AI Software Engineer",
+  "worksFor": { "@type": "Organization", "name": "Motive" },
+  "url": "https://msalman-g.github.io/",
+  "email": "mailto:msa07886@gmail.com",
+  "sameAs": [
+    "https://github.com/msalman-g",
+    "https://pk.linkedin.com/in/msalmanghazi"
+  ]
+}
+</script>
 <style>
   /* Palette + type sourced via ui-ux-pro-max design-system search (Tech Startup type pairing; Portfolio/Educational-App color entries) */
   :root{
@@ -48,23 +74,26 @@
   /* NAV */
   header{
     position:sticky;top:0;z-index:50;
+    -webkit-backdrop-filter:blur(10px);
     backdrop-filter:blur(10px);
     background:rgba(251,250,255,0.8);
     border-bottom:1px solid var(--line);
   }
-  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1120px;margin:0 auto;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1120px;margin:0 auto;position:relative;}
   .brand{font-weight:700;font-size:1.15rem;display:flex;align-items:center;gap:10px;}
   .brand-dot{width:12px;height:12px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--pink));display:inline-block;}
   .nav-links{display:flex;gap:28px;font-weight:500;font-size:0.95rem;}
   .nav-links a{position:relative;padding:4px 0;color:var(--ink);}
   .nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:linear-gradient(90deg,var(--purple),var(--pink));transition:width .25s;}
   .nav-links a:hover::after{width:100%;}
+  .nav-right{display:flex;align-items:center;gap:10px;}
   .nav-cta{
     background:linear-gradient(135deg,var(--purple),var(--pink));
-    color:#fff;padding:10px 20px;border-radius:999px;font-weight:600;font-size:0.9rem;
+    color:#fff;padding:13px 20px;border-radius:999px;font-weight:600;font-size:0.9rem;
     box-shadow:var(--shadow);
   }
-  .menu-btn{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink);}
+  .menu-btn{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink);padding:10px;line-height:1;border-radius:8px;}
+  .menu-btn:hover{background:var(--line);}
 
   /* HERO */
   .hero{position:relative;padding:96px 0 80px;overflow:hidden;}
@@ -208,8 +237,20 @@
 
   footer{padding:36px 0;text-align:center;color:var(--muted);font-size:0.85rem;}
 
+  @media (max-width:900px){
+    .nav-links{gap:18px;}
+  }
+
   @media (max-width:760px){
     .nav-links{display:none;}
+    .nav-links.open{
+      display:flex;flex-direction:column;gap:0;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--card);border-bottom:1px solid var(--line);
+      padding:8px 24px 16px;box-shadow:var(--shadow);
+    }
+    .nav-links.open a{padding:12px 0;border-bottom:1px solid var(--line);}
+    .nav-links.open a:last-child{border-bottom:none;}
     .menu-btn{display:block;}
     .about-grid{grid-template-columns:1fr;}
     .avatar{margin:0 auto;}
@@ -222,14 +263,17 @@
 <header>
   <nav>
     <a href="#top" class="brand"><span class="brand-dot"></span>Muhammad Salman</a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#awards">Awards</a>
     </div>
-    <a href="#contact" class="nav-cta">Let's talk</a>
+    <div class="nav-right">
+      <a href="#contact" class="nav-cta">Let's talk</a>
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">☰</button>
+    </div>
   </nav>
 </header>
 
@@ -241,7 +285,7 @@
     <canvas id="hero3d" aria-hidden="true"></canvas>
     <div class="container hero-inner">
       <div class="eyebrow reveal">
-        <svg class="icon wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.5 4.5l2 2M17.5 17.5l2 2M3 12h3M18 12h3M4.5 19.5l2-2M17.5 6.5l2-2"/></svg>
+        <svg class="icon wave" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.5 4.5l2 2M17.5 17.5l2 2M3 12h3M18 12h3M4.5 19.5l2-2M17.5 6.5l2-2"/></svg>
         Available for interesting problems
       </div>
       <h1 class="reveal">Building fast, friendly &amp;<br><span class="gradient-text">a little bit magical</span> software.</h1>
@@ -366,7 +410,7 @@
             <p class="tl-sub">Clinical staffing platform — React, TypeScript, Go, PostgreSQL, HIPAA/HITRUST</p>
             <ul>
               <li>Built interactive UIs in React/TypeScript and back-end services in Go, with data managed via PostgreSQL and TypeORM.</li>
-              <li>Ensured HIPAA, COS2 and HITRUST compliance for clinical application security and data privacy.</li>
+              <li>Ensured HIPAA, SOC 2 and HITRUST compliance for clinical application security and data privacy.</li>
             </ul>
             <div class="tag-row"><span class="tag">React</span><span class="tag">Go</span><span class="tag">PostgreSQL</span></div>
           </div>
@@ -402,7 +446,7 @@
       <div class="project-grid">
         <div class="project-card reveal">
           <div class="project-icon" style="background:linear-gradient(135deg,var(--purple),var(--pink));">
-            <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.2" fill="currentColor" stroke="none"/><path d="M9 18h6"/></svg>
+            <svg class="icon" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4"/><circle cx="12" cy="3" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="14" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.2" fill="currentColor" stroke="none"/><path d="M9 18h6"/></svg>
           </div>
           <div class="project-meta">Motive · Production LLM</div>
           <h3>AI Coach</h3>
@@ -410,7 +454,7 @@
         </div>
         <div class="project-card reveal">
           <div class="project-icon" style="background:linear-gradient(135deg,var(--teal),var(--purple));">
-            <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <svg class="icon" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
           </div>
           <div class="project-meta">Motive · Maps &amp; Safety</div>
           <h3>Speed Limit Editor</h3>
@@ -418,7 +462,7 @@
         </div>
         <div class="project-card reveal">
           <div class="project-icon" style="background:linear-gradient(135deg,var(--orange),var(--yellow));">
-            <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+            <svg class="icon" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
           </div>
           <div class="project-meta">DASI · Proptech</div>
           <h3>AI Property Analyzer</h3>
@@ -426,7 +470,7 @@
         </div>
         <div class="project-card reveal">
           <div class="project-icon" style="background:linear-gradient(135deg,var(--pink),var(--orange));">
-            <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+            <svg class="icon" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
           </div>
           <div class="project-meta">BenzingaPro · Fintech</div>
           <h3>Screener Widget &amp; Financial Graphs</h3>
@@ -434,7 +478,7 @@
         </div>
         <div class="project-card reveal">
           <div class="project-icon" style="background:linear-gradient(135deg,var(--purple),var(--teal));">
-            <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+            <svg class="icon" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
           </div>
           <div class="project-meta">Investify · Fintech</div>
           <h3>Investment Platform</h3>
@@ -442,7 +486,7 @@
         </div>
         <div class="project-card reveal">
           <div class="project-icon" style="background:linear-gradient(135deg,var(--yellow),var(--purple));">
-            <svg class="icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg>
+            <svg class="icon" aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a13 13 0 0 1 0 18M12 3a13 13 0 0 0 0 18"/></svg>
           </div>
           <div class="project-meta">Motive · Design Systems</div>
           <h3>Storybook + Runtime i18n</h3>
@@ -519,7 +563,7 @@
       <div class="awards-grid">
         <div class="award-card reveal">
           <div class="award-icon">
-            <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a1 1 0 0 0-1 1 5 5 0 0 0 4 5M17 5h3a1 1 0 0 1 1 1 5 5 0 0 1-4 5"/></svg>
+            <svg class="icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a1 1 0 0 0-1 1 5 5 0 0 0 4 5M17 5h3a1 1 0 0 1 1 1 5 5 0 0 1-4 5"/></svg>
           </div>
           <div>
             <h3>3× Extra Mile Award — Motive (2023–2025)</h3>
@@ -528,7 +572,7 @@
         </div>
         <div class="award-card reveal">
           <div class="award-icon">
-            <svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h6M9 9h2"/></svg>
+            <svg class="icon" aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8l-5-5z"/><path d="M14 3v5h5M9 13h6M9 17h6M9 9h2"/></svg>
           </div>
           <div>
             <h3>Published Author — Medium</h3>
@@ -545,7 +589,7 @@
         <h2>Let's build something great together.</h2>
         <p>Open to new opportunities and interesting collaborations — reach out and let's talk.</p>
         <div class="contact-ctas">
-          <a href="mailto:msa07886@gmail.com" class="btn btn-white"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg> msa07886@gmail.com</a>
+          <a href="mailto:msa07886@gmail.com" class="btn btn-white"><svg class="icon" aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg> msa07886@gmail.com</a>
           <a href="https://pk.linkedin.com/in/msalmanghazi" target="_blank" rel="noopener" class="btn btn-outline-white">LinkedIn →</a>
           <a href="https://github.com/msalman-g" target="_blank" rel="noopener" class="btn btn-outline-white">GitHub →</a>
         </div>
@@ -565,6 +609,24 @@
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Mobile nav toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinksEl = document.getElementById('navLinks');
+  if (menuBtn && navLinksEl) {
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinksEl.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      menuBtn.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinksEl.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinksEl.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.textContent = '☰';
+      });
+    });
+  }
+
   // Role rotator (skipped under reduced-motion to avoid unnecessary flicker)
   const roleEl = document.getElementById('roleWord');
   const articleEl = document.getElementById('roleArticle');
@@ -582,14 +644,6 @@
       }, 250);
     }, 2600);
   }
-
-  // Safety net: if the Motion CDN import below fails to load (blocked network, offline, etc.)
-  // force every .reveal element visible after a short delay so content is never stuck hidden.
-  setTimeout(() => {
-    document.querySelectorAll('.reveal').forEach(el => {
-      if (getComputedStyle(el).opacity === '0') el.style.opacity = 1;
-    });
-  }, 2000);
 
   // 3D tilt-on-hover for cards — perspective rotateX/rotateY driven by cursor position.
   // Desktop-hover only (skips touch devices) and skipped entirely under reduced-motion.
@@ -694,25 +748,33 @@
 <script type="module">
   // Motion (formerly Framer Motion) — scroll-triggered, staggered section reveals.
   // https://motion.dev/docs/inview  https://motion.dev/docs/stagger
-  import { animate, inView, stagger } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+  // Wrapped in try/catch: if the CDN import fails (blocked network, offline, etc.) we force every
+  // .reveal element visible immediately instead of leaving content stuck at opacity:0. This replaces
+  // a blind setTimeout fallback that used to fire on a fixed delay regardless of whether Motion had
+  // loaded — which caused off-screen sections to pop to opacity:1 early, then visibly flash back to
+  // 0 and re-fade when Motion's inView() finally animated them on scroll.
+  try {
+    const { animate, inView, stagger } = await import("https://cdn.jsdelivr.net/npm/motion@latest/+esm");
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    inView('section', (sectionEl) => {
+      const items = Array.from(sectionEl.querySelectorAll('.reveal'));
+      if (!items.length) return;
 
-  inView('section', (sectionEl) => {
-    const items = Array.from(sectionEl.querySelectorAll('.reveal'));
-    if (!items.length) return;
+      if (prefersReduced) {
+        items.forEach(el => { el.style.opacity = 1; });
+        return;
+      }
 
-    if (prefersReduced) {
-      items.forEach(el => { el.style.opacity = 1; });
-      return;
-    }
-
-    animate(
-      items,
-      { opacity: [0, 1], y: [24, 0] },
-      { duration: 0.6, delay: stagger(0.12), ease: [0.22, 1, 0.36, 1] }
-    );
-  }, { amount: 0.2 });
+      animate(
+        items,
+        { opacity: [0, 1], y: [24, 0] },
+        { duration: 0.6, delay: stagger(0.12), ease: [0.22, 1, 0.36, 1] }
+      );
+    }, { amount: 0.2 });
+  } catch (e) {
+    document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; });
+  }
 </script>
 
 </body>
